@@ -5,17 +5,14 @@ const mongoose = require("mongoose");
 const orders
 = new mongoose.Schema({
 name : { type:String},
-vCPU : { type:String},
-ram : { type:String},
-storage : { type:String},
-bandwidth : { type:String},
-billing_Cycle : { type:String},
-os : { type:String},
-plan : { type:String},
 amount : { type:String},
-manage_Service_id : { type:String},
-manageServiceName : { type:String},
-manageServiceAmount : { type:String},
+configuration: {type: Object},
+manageService : { type:Object},
+user_id : {type : String ,  require : true},
+is_deleted : {type : Boolean , default : false},
+status: {  type: String,  enum : ['OPEN', 'INPROGRESS' , "DONE" , "REOPEN"],  default: 'OPEN' }, 
+},{
+    timestamps :true
 });
 
 module.exports = mongoose.model("orders", orders);

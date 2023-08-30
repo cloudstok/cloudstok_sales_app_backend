@@ -11,6 +11,9 @@ const configurations
     cost_yearly: {type:String},
     os: {type:String},
     plan: {type:String},
+    is_deleted : {type : Boolean , default : false}
+},{
+    timestamps :true
 });
 
 module.exports = mongoose.model("configurations", configurations);

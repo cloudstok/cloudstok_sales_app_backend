@@ -10,7 +10,9 @@ accounts: { type:String},
 host: { type:String},
 support: { type:String},
 description: { type:String},
-
+is_deleted : {type : Boolean , default : false}
+},{
+    timestamps :true
 });
 
 module.exports = mongoose.model("manageservices", manageservices);

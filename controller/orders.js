@@ -26,6 +26,7 @@ const order = require("../model/orders");
       let {_id} =  await data.save();
        return res.status(200).send({msg : "Order created successfully",status:true , id : _id})
     }catch(err){
+      console.log(err)
         return res.status(400).send({Errer:err,status:false})
     }
     
