@@ -22,9 +22,21 @@ const order = require("../model/orders");
 
   const createOrder = async(req, res) => {
     try{
+      req.body.user = res.locals.auth.data
        const data = new order(req.body);
       let {_id} =  await data.save();
        return res.status(200).send({msg : "Order created successfully",status:true , id : _id})
+    }catch(err){
+      console.log(err)
+        return res.status(400).send({Errer:err,status:false})
+    }
+    
+  };
+  const updateOrder = async(req, res) => {
+    try{
+      
+       await order.findByIdAndUpdate(req.params.id , {user : req.body, status : INPROGRESS});
+       return res.status(200).send({msg : "payment successfully ",status:true })
     }catch(err){
       console.log(err)
         return res.status(400).send({Errer:err,status:false})
@@ -35,5 +47,6 @@ const order = require("../model/orders");
   module.exports= {
     createOrder,
     findOrder,
-    findByIddOrder
+    findByIddOrder,
+    updateOrder
   }
