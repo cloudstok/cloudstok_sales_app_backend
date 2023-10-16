@@ -3,6 +3,7 @@ const order = require("../model/orders");
   const findOrder = async(req, res) => {
     try{
         let data = await order.find();
+        data = data.filter((e)=>e.user.user_id === res.locals.auth.data.user_id)
         return res.status(200).send({data : data})
     }catch(err){
         return res.status(400).send({Errer:err})
@@ -34,7 +35,6 @@ const order = require("../model/orders");
   };
   const updateOrder = async(req, res) => {
     try{
-      
        await order.findByIdAndUpdate(req.params.id , {user : req.body, status : INPROGRESS});
        return res.status(200).send({msg : "payment successfully ",status:true })
     }catch(err){

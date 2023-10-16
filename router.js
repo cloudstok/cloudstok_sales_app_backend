@@ -8,7 +8,7 @@ const router = require('express').Router()
 
 router.get('/findAllConfiguration' , findallconfiguration)
 router.get('/findAllManageservices' , findallmanageservices)
-router.get('/findOrder' , findOrder)
+router.get('/findOrder' ,  verify_token , findOrder)
 router.get('/findByIdOrder/:id' , findByIddOrder)
 router.post('/createOrder',verify_token, createOrder)
 router.put('/updateOrder/:id', updateOrder)
